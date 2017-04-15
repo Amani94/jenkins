@@ -1,9 +1,12 @@
-master:
-  build: .
-  environment:
-    JAVA_OPTS: "-Djava.awt.headless=true"
-  ports:
-    - "50000:50000"
-    - "8080:8080"
-  volumes:
-    - /var/jenkins_home
+version: '2'
+
+services:
+  app:
+    image: https://hub.docker.com/r/2194/jenkins:latest
+    restart: always
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      
+volumes:
+  jenkins_home:
+    driver: local
